@@ -2,6 +2,8 @@ package e.lotz3.tipcalculator;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,16 +46,17 @@ public class MainActivity extends AppCompatActivity {
         final TextView box8 = (TextView)findViewById(R.id.finaltotal);
         final TextView seekBarValue = (TextView)findViewById(R.id.seekbarvalue);
         SeekBar seekBar = (SeekBar)findViewById(R.id.seekBar2);
+        final EditText myTextBox = (EditText) findViewById(R.id.bill);
 
 
-
-
-
-
-
-        enter.setOnClickListener(new View.OnClickListener() {
+        myTextBox.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View view) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
                 total= box_total.getText().toString();
                 double tip1 = Double.parseDouble(total);
                 double tip2 = Double.parseDouble(total);
@@ -72,13 +75,18 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+            }
 
-
-
+            @Override
+            public void afterTextChanged(Editable s) {
 
             }
-        }
-        );
+        });
+
+
+
+
+
 
 
 
